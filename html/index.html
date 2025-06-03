@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nu-Blackmarket</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="hidden">
+        <!-- Main Container -->
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1 id="app-title">Black Market</h1>
+                        <p id="app-subtitle">Illegal goods and services</p>
+                    </div>
+                    <div class="header-right">
+                        <button id="close-btn" class="close-btn" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Left Panel - Items -->
+                <div class="left-panel">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="search-input" placeholder="Search items..." />
+                            <button id="clear-search" class="clear-search hidden">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Tabs -->
+                    <div class="category-tabs" id="category-tabs">
+                        <!-- Categories will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Items Grid -->
+                    <div class="items-container" id="items-container">
+                        <div class="loading" id="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Loading items...</span>
+                        </div>
+                        <div class="no-results hidden" id="no-results">
+                            <i class="fas fa-search"></i>
+                            <p>No items found</p>
+                            <span>Try adjusting your search or category</span>
+                        </div>
+                        <div class="items-grid" id="items-grid">
+                            <!-- Items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Cart -->
+                <div class="right-panel">
+                    <div class="cart-container">
+                        <div class="cart-header">
+                            <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+                            <div class="cart-actions">
+                                <span class="cart-count" id="cart-count">0</span>
+                                <button id="clear-cart" class="clear-cart-btn hidden" aria-label="Clear cart">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cart-content" id="cart-content">
+                            <div class="empty-cart" id="empty-cart">
+                                <i class="fas fa-shopping-basket"></i>
+                                <p>Your cart is empty</p>
+                                <span>Add some items to get started</span>
+                            </div>
+
+                            <div class="cart-items" id="cart-items">
+                                <!-- Cart items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="cart-footer">
+                            <div class="cart-total">
+                                <div class="total-row">
+                                    <span>Total:</span>
+                                    <span class="total-amount" id="total-amount">$0</span>
+                                </div>
+                                <div class="savings-row hidden" id="savings-row">
+                                    <span>You save:</span>
+                                    <span class="savings-amount" id="savings-amount">$0</span>
+                                </div>
+                            </div>
+                            <button class="purchase-btn disabled" id="purchase-btn" disabled>
+                                <i class="fas fa-credit-card"></i>
+                                <span>Purchase Items</span>
+                                <div class="btn-loading hidden">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Confirmation Modal -->
+    <div id="purchase-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Confirm Purchase</h3>
+            </div>
+            <div class="modal-body">
+                <div class="purchase-summary" id="purchase-summary">
+                    <!-- Purchase summary will be populated -->
+                </div>
+                <div class="purchase-total">
+                    <span>Total: </span>
+                    <span class="amount" id="modal-total">$0</span>
+                </div>
+                <div class="payment-method">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Payment will be deducted from your <span id="payment-type">cash</span></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-purchase">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+                <button class="btn btn-primary" id="confirm-purchase">
+                    <i class="fas fa-check"></i>
+                    <span>Confirm Purchase</span>
+                    <div class="btn-loading hidden">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
