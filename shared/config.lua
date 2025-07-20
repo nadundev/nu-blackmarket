@@ -22,6 +22,11 @@ Config.Target = {
     debug = false -- ox_target debug mode
 }
 
+Config.Ticket = {
+    enabled = true,           -- Set to true to require a ticket item to access the black market
+    item = "blackmkticket"    -- The inventory item name required as a ticket
+}
+
 -- Currency Configuration
 Config.Currency = {
     type = "cash", -- "cash" or "bank" or custom item name like "crypto"
