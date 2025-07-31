@@ -159,6 +159,28 @@ local function sendWebhook(playerName, citizenid, items, totalCost)
     })
 end
 
+
+RegisterNetEvent("nu-blackmarket:server:requestOpenUI", function()
+    local src = source
+    local Player = exports.qbx_core:GetPlayer(src)
+    if not Player then return end
+
+    -- Check job restrictions
+    if not checkJobRestrictions(src) then
+        TriggerClientEvent("nu-blackmarket:client:openUIDenied", src, "Access denied due to job restrictions")
+        return
+    end
+
+    -- Check time restrictions
+    if not checkTimeRestrictions() then
+        TriggerClientEvent("nu-blackmarket:client:openUIDenied", src, "Black market is closed at this time")
+        return
+    end
+
+    -- Passed all checks, allow UI open
+    TriggerClientEvent("nu-blackmarket:client:openUIAllowed", src)
+end)
+
 -- Register server events
 RegisterNetEvent("nu-blackmarket:server:getStock", function()
     local source = source

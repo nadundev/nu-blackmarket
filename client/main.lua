@@ -31,15 +31,15 @@ local function spawnBlackmarketPed()
     end
     
     -- Add ox_target interaction
-    exports.ox_target:addLocalEntity(blackmarketPed, {
+   exports.ox_target:addLocalEntity(blackmarketPed, {
         {
-            name = "nu_blackmarket_interact",
-            icon = Config.Target.icon,
-            label = Config.Target.label,
-            distance = Config.Target.distance,
-            onSelect = function()
-                openBlackmarketUI()
-            end
+        name = "nu_blackmarket_interact",
+        icon = Config.Target.icon,
+        label = Config.Target.label,
+        distance = Config.Target.distance,
+        onSelect = function()
+            TriggerServerEvent("nu-blackmarket:server:requestOpenUI")
+        end
         }
     })
     
@@ -280,6 +280,20 @@ end)
 RegisterNUICallback("requestStock", function(data, cb)
     TriggerServerEvent("nu-blackmarket:server:getStock")
     cb("ok")
+end)
+
+
+
+RegisterNetEvent("nu-blackmarket:client:openUIAllowed", function()
+    openBlackmarketUI()
+end)
+
+RegisterNetEvent("nu-blackmarket:client:openUIDenied", function(reason)
+    lib.notify({
+        title = "Black Market",
+        description = reason or "Access denied",
+        type = "error"
+    })
 end)
 
 -- Register client events
